@@ -1,4 +1,5 @@
 'use client'
+import Modal from "@/components/Modal";
 import { useState, useEffect } from "react"
 
 const Jobs = () => {
@@ -6,6 +7,15 @@ const Jobs = () => {
   const [salary, setsalary] = useState(100);
   const [Jobdetails, setJobdetails] = useState({ jobs: [] });
   const [search, setSearch] = useState("");
+
+  // Modal States
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+  setSelectedJob(null);
+  setIsModalOpen(false);
+};
 
   const Categories = [
     { name: "IT/Technology" },
@@ -30,7 +40,7 @@ const Jobs = () => {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const response = await fetch("https://remotive.com/api/remote-jobs");
+      const response = await fetch("/api/jobs");
       const data = await response.json();
       setJobdetails(data);
       setFetchdetails(true);
@@ -66,7 +76,7 @@ const Jobs = () => {
 
       {Fetchdetails ?
         (<div className="jobs-container flex justify-center items-start gap-7 w-[85%] mx-auto">
-          <div className="left-filters w-[30%] bg-white rounded-2xl shadow-xl p-4">
+          <div className="left-filters sticky top-16 w-[30%] bg-white rounded-2xl shadow-xl p-4">
             <h3 className="text-xl font-semibold pt-4">Filters</h3>
             <div className="keyword flex flex-col gap-2 py-4">
               <label htmlFor="">Keyword Search</label>
@@ -117,7 +127,7 @@ const Jobs = () => {
           <div className="right-jobs w-[70%]">
             {filteredJobs.length > 0 ? (
               filteredJobs.slice(0, 10).map((j) => (
-                <div key={j.id} className="job-card mb-6 w-full h-auto mx-auto p-6 bg-white rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-all duration-700">
+                <div key={j.id} onClick={() => setIsModalOpen(true)} className="job-card mb-6 w-full h-auto mx-auto p-6 bg-white rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-all duration-700">
                   <div className="flex items-start justify-between">
                     <h2 className="text-xl font-semibold text-gray-800 hover:text-blue-600 cursor-pointer">{j.title}</h2>
                     <span className="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-600 font-medium">{j.job_type}</span>
@@ -149,6 +159,8 @@ const Jobs = () => {
             Loading...
           </p>
         )}
+
+      <Modal isOpen={isModalOpen} onClose={closeModal} job={selectedJob} />
     </>
   )
 }
