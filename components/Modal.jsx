@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, job }) => {
                     <h2 className="text-2xl font-semibold">{job.title}</h2>
                     <p className="text-gray-600 mt-2">{job.company_name}</p>
                     <div className="text-sm text-gray-500 mt-2">
-                        {job.salary || "Not Disclosed"} | 📍 {job.location || "Remote"} | {job.category}
+                        Salary : {job.salary || "Not Disclosed"} | Job Location : {job.location || "Remote"} | Category : {job.category}
                     </div>
 
                     <p className="mt-4 text-gray-700" dangerouslySetInnerHTML={{ __html: job.description }} />

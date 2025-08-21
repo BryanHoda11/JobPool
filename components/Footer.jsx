@@ -41,11 +41,12 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div>
-                        <h3 className='font-semibold text-xl'>JobPool</h3>
+                        <h3 className='font-semibold text-xl'>Company</h3>
                         <ul className='flex flex-col gap-3 pt-3'>
-                            <li className='cursor-pointer hover:underline'>Privacy Policy</li>
+                            <li className='cursor-pointer hover:underline'>About Us</li>
                             <li className='cursor-pointer hover:underline'>Careers</li>
                             <li className='cursor-pointer hover:underline'>Contact Us</li>
+                            <li className='cursor-pointer hover:underline'>Privacy Policy</li>
                             <li className='cursor-pointer hover:underline'>Terms & Conditions</li>
                         </ul>
                     </div>

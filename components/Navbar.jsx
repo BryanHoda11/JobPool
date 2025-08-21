@@ -56,10 +56,10 @@ const Navbar = () => {
                             {Profile && <div className="absolute right-0 px-4 py-4 top-full group-hover:block bg-white shadow-lg min-w-[250px] z-50">
                                 <ul className="flex flex-col gap-5">
                                     <li>Hello, User123@gmail.com!</li>
-                                    <hr className='mb-3 h-[1px] w-full' />
+                                    <hr className='mb-1 h-[1px] w-full' />
                                     <Link href='/Applications'><li className="hover:text-blue-600">My Applications</li></Link>
                                     <li className="hover:text-blue-600">Saved Jobs</li>
-                                    <li className="hover:text-blue-600">Resume / CV</li>
+                                    <Link href='/Resume'><li className="hover:text-blue-600">Resume / CV</li></Link>
                                     <li className="hover:text-blue-600">Privacy Policy</li>
                                     <li className="hover:text-blue-600">Help Center &copy; JobPool</li>
                                 </ul>

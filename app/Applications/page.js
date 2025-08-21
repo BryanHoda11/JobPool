@@ -15,36 +15,44 @@ const Applications = () => {
                         <tr className="bg-gray-100">
                             <th className="text-left px-4 py-3 font-semibold">Job Role</th>
                             <th className="text-left px-4 py-3 font-semibold">Applied on</th>
-                            <th className="text-left px-4 py-3 font-semibold">Application Status</th>
+                            <th className="text-right px-4 py-3 font-semibold">Application Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className="bg-white hover:bg-gray-50 transition">
                             <td className="px-4 py-3 rounded-l-lg text-gray-800">Software Engineer</td>
                             <td className="px-4 py-3 text-gray-500">17-07-2025</td>
-                            <td className="px-4 py-3 rounded-r-lg">
-                                <span className="flex w-fit items-center gap-2 justify-center px-3 py-1 text-sm font-semibold bg-green-700 text-white rounded-full"><IoMdCheckmark /> Applied</span>
+                            <td className="px-4 py-3 rounded-r-lg text-right">
+                                <span className="inline-flex items-center gap-2 px-3 py-1 text-sm font-semibold bg-blue-700 text-white rounded-lg">
+                                    <IoMdCheckmark /> Applied
+                                </span>
                             </td>
                         </tr>
                         <tr className="bg-white hover:bg-gray-50 transition">
                             <td className="px-4 py-3 rounded-l-lg text-gray-800">Frontend Engineer</td>
                             <td className="px-4 py-3 text-gray-500">08-05-2025</td>
-                            <td className="px-4 py-3 rounded-r-lg">
-                                <span className="flex w-fit items-center gap-2 justify-center px-3 py-1 text-sm font-semibold bg-green-700 text-white rounded-full"><IoMdCheckmark /> Applied</span>
+                            <td className="px-4 py-3 rounded-r-lg text-right">
+                                <span className="inline-flex items-center gap-2 px-3 py-1 text-sm font-semibold bg-blue-700 text-white rounded-lg">
+                                    <IoMdCheckmark /> Applied
+                                </span>
                             </td>
                         </tr>
                         <tr className="bg-white hover:bg-gray-50 transition">
                             <td className="px-4 py-3 rounded-l-lg text-gray-800">Data Analyst</td>
                             <td className="px-4 py-3 text-gray-500">12-03-2025</td>
-                            <td className="px-4 py-3 rounded-r-lg">
-                                <span className="flex w-fit items-center gap-2 justify-center px-3 py-1 text-sm font-semibold bg-gray-200 rounded-full"><AiOutlineMinus /> Seen</span>
+                            <td className="px-4 py-3 rounded-r-lg text-right">
+                                <span className="inline-flex items-center gap-2 px-3 py-1 text-sm font-semibold bg-gray-200 rounded-lg">
+                                    <AiOutlineMinus /> Seen
+                                </span>
                             </td>
                         </tr>
                         <tr className="bg-white hover:bg-gray-50 transition">
-                            <td className="px-4 py-3 rounded-l-lg text-gray-800">Markting Executive</td>
+                            <td className="px-4 py-3 rounded-l-lg text-gray-800">Marketing Executive</td>
                             <td className="px-4 py-3 text-gray-500">23-01-2025</td>
-                            <td className="px-4 py-3 rounded-r-lg">
-                                <span className="flex w-fit items-center gap-2 justify-center px-3 py-1 text-sm font-semibold bg-red-600 text-white rounded-full"><RxCross2 /> Rejected</span>
+                            <td className="px-4 py-3 rounded-r-lg text-right">
+                                <span className="inline-flex items-center gap-2 px-3 py-1 text-sm font-semibold bg-red-600 text-white rounded-lg">
+                                    <RxCross2 /> Rejected
+                                </span>
                             </td>
                         </tr>
                     </tbody>
