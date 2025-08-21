@@ -33,20 +33,20 @@ const Navbar = () => {
                             {Companies && <div className="absolute right-0 px-4 py-4 top-full group-hover:block bg-white shadow-lg min-w-[250px] z-50">
                                 <div className="grid grid-cols-2 gap-6">
                                     <ul className="flex flex-col gap-5">
-                                        <li className="hover:text-blue-600">Jobs at TCS</li>
-                                        <li className="hover:text-blue-600">Jobs at Infosys</li>
-                                        <li className="hover:text-blue-600">Jobs at IBM</li>
-                                        <li className="hover:text-blue-600">Jobs at Google</li>
-                                        <li className="hover:text-blue-600">Jobs at Myntra</li>
-                                        <li className="hover:text-blue-600">Jobs at DEPT</li>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at TCS</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Infosys</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at IBM</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Google</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Myntra</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at DEPT</li></Link>
                                     </ul>
                                     <ul className="flex flex-col gap-5">
-                                        <li className="hover:text-blue-600">Jobs at Accenture</li>
-                                        <li className="hover:text-blue-600">Jobs at Wipro</li>
-                                        <li className="hover:text-blue-600">Jobs at Microsoft</li>
-                                        <li className="hover:text-blue-600">Jobs at Amazon</li>
-                                        <li className="hover:text-blue-600">Jobs at Flipkart</li>
-                                        <li className="hover:text-blue-600">Jobs at Goldman Sachs</li>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Accenture</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Wipro</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Microsoft</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Amazon</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Flipkart</li></Link>
+                                        <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at Goldman Sachs</li></Link>
                                     </ul>
                                 </div>
                             </div>}
@@ -57,7 +57,7 @@ const Navbar = () => {
                                 <ul className="flex flex-col gap-5">
                                     <li>Hello, User123@gmail.com!</li>
                                     <hr className='mb-3 h-[1px] w-full' />
-                                    <li className="hover:text-blue-600">My Applications</li>
+                                    <Link href='/Applications'><li className="hover:text-blue-600">My Applications</li></Link>
                                     <li className="hover:text-blue-600">Saved Jobs</li>
                                     <li className="hover:text-blue-600">Resume / CV</li>
                                     <li className="hover:text-blue-600">Privacy Policy</li>

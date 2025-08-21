@@ -10,7 +10,7 @@ const Jobs = () => {
 
   // Modal States
   const [selectedJob, setSelectedJob] = useState(null);
-  const [ToggleModal, setToggleModal] = useState(true);
+  const [ToggleModal, setToggleModal] = useState(false);
 
   const closeModal = () => {
     setSelectedJob(null);
@@ -84,7 +84,7 @@ const Jobs = () => {
 
           <div className="job-type py-4">
             <label htmlFor="">Job Type</label>
-            <ul className="flex flex-col pt-3">
+            <ul className="flex flex-col">
               <li className="flex gap-2 items-center">
                 <input type="checkbox" name="" id="" />
                 <span>Remote</span>
@@ -127,7 +127,7 @@ const Jobs = () => {
           {Fetchdetails ? (
             filteredJobs.length > 0 ? (
               filteredJobs.slice(0, 10).map((j) => (
-                <div key={j.id} onClick={() => setToggleModal(true)} className="job-card mb-6 w-full h-auto mx-auto p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl cursor-pointer transition-all duration-700">
+                <div key={j.id} onClick={() => { setSelectedJob(j);  setToggleModal(true); }} className="job-card mb-6 w-full h-auto mx-auto p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl cursor-pointer transition-all duration-700">
                   <div className="flex items-start justify-between">
                     <h2 className="text-xl font-semibold text-gray-800 hover:text-blue-600 cursor-pointer"> {j.title}</h2>
                     <span className="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-600 font-medium">{j.job_type} </span>
