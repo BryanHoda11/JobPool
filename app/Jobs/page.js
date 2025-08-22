@@ -1,6 +1,9 @@
 'use client'
+import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import { useState, useEffect } from "react"
+import { AiOutlineCaretLeft } from "react-icons/ai";
+import { AiOutlineCaretRight } from "react-icons/ai";
 
 const Jobs = () => {
   const [Fetchdetails, setFetchdetails] = useState(false);
@@ -16,27 +19,6 @@ const Jobs = () => {
     setSelectedJob(null);
     setToggleModal(false);
   };
-
-  const Categories = [
-    { name: "IT/Technology" },
-    { name: "Engineering" },
-    { name: "Marketing" },
-    { name: "Designing" },
-    { name: "Sales" },
-    { name: "Artificial Intelligence (AI)" },
-    { name: "Finance & Accounting" },
-    { name: "Human Resource (HR)" },
-    { name: "Operations & Supply Chain" },
-    { name: "Data Science & Analytics" },
-    { name: "Legal & Compliance" },
-    { name: "Cybersecurity" },
-    { name: "Teacher" },
-    { name: "DevOps & Cloud" },
-    { name: "Media & Communications" },
-    { name: "Content Writing" },
-    { name: "Sports & Fitness" },
-    { name: "Agriculture & Food Industry" }
-  ]
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -54,19 +36,18 @@ const Jobs = () => {
     Number(j.salary) >= Number(salary)
   );
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 20;
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
+
   return (
     <>
-      <div className="header mx-4 my-2">
-        <h2 className="text-xl pb-3 font-semibold text-center">Explore job categories that fit your role!</h2>
-
-        <div className="job-categories px-4 flex items-center mx-auto justify-start gap-2 w-[90%] overflow-x-auto whitespace-nowrap scrollbar-hide">
-          {Categories.map((c) => (
-            <div key={c.name} className="chip text-sm bg-gray-200 cursor-pointer hover:scale-105 hover:font-semibold transition-all duration-300 rounded-full px-3 py-2 inline-flex items-center justify-center">
-              {c.name}
-            </div>
-          ))}
-        </div>
-      </div>
+      <Header />
 
       <div className="search my-4 mt-7 w-[75%] mx-auto">
         <input onChange={(e) => setSearch(e.target.value)} type="text" name="search" id="search" placeholder="Search Jobs" className="border px-4 py-3 rounded-xl text-lg w-full" />
@@ -126,8 +107,8 @@ const Jobs = () => {
         <div className="right-jobs w-[70%]">
           {Fetchdetails ? (
             filteredJobs.length > 0 ? (
-              filteredJobs.slice(0, 10).map((j) => (
-                <div key={j.id} onClick={() => { setSelectedJob(j);  setToggleModal(true); }} className="job-card mb-6 w-full h-auto mx-auto p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl cursor-pointer transition-all duration-700">
+              currentJobs.map((j) => (
+                <div key={j.id} onClick={() => { setSelectedJob(j); setToggleModal(true); }} className="job-card mb-6 w-full h-auto mx-auto p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl cursor-pointer transition-all duration-700">
                   <div className="flex items-start justify-between">
                     <h2 className="text-xl font-semibold text-gray-800 hover:text-blue-600 cursor-pointer"> {j.title}</h2>
                     <span className="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-600 font-medium">{j.job_type} </span>
@@ -158,6 +139,20 @@ const Jobs = () => {
               Loading...
             </div>
           )}
+
+          <div className="pagination mt-5 flex w-full justify-between items-center">
+            <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded-full disabled:opacity-50">
+              <AiOutlineCaretLeft /> Prev
+            </button>
+
+            <span className="text-gray-700 font-medium">
+              Page {currentPage} off {totalPages}
+            </span>
+
+            <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded-full disabled:opacity-50">
+              Next <AiOutlineCaretRight />
+            </button>
+          </div>
         </div>
       </div>
 

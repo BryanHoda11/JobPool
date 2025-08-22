@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
     const [Companies, setCompanies] = useState(false);
@@ -26,7 +27,7 @@ const Navbar = () => {
                 <div className='flex items-center justify-between px-5 py-3'>
                     <Link href='/'> <div className="logo text-2xl font-bold">JobPool</div> </Link>
 
-                    <ul className='flex items-center font-semibold gap-3'>
+                    <ul className='hidden md:flex items-center font-semibold gap-3'>
                         <Link href='/Jobs' className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>Jobs</Link>
                         <li onMouseOver={() => setCompanies(true)}
                             onMouseLeave={() => setCompanies(false)} className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>Companies
@@ -71,6 +72,8 @@ const Navbar = () => {
                             <option value="Usa">USA</option>
                         </select>
                     </ul>
+
+                    <div className="hamburger block md:hidden cursor-pointer"><RxHamburgerMenu /></div>
                 </div>
             </nav>
         </>
