@@ -6,12 +6,22 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { IoChevronDownSharp } from "react-icons/io5";
 
+import {
+    SignInButton,
+    SignUpButton,
+    SignedIn,
+    SignedOut,
+    UserButton,
+} from '@clerk/nextjs'
+import { useUser } from "@clerk/nextjs";
+
 const Navbar = () => {
     const [Companies, setCompanies] = useState(false);
     const [Profile, setProfile] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-
     const [resNav, setresNav] = useState(false);
+
+    const { user, isSignedIn } = useUser();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -35,7 +45,7 @@ const Navbar = () => {
                     <ul className='hidden md:flex items-center font-semibold gap-3'>
                         <Link href='/Jobs' className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>Jobs</Link>
                         <li onMouseOver={() => setCompanies(true)}
-                            onMouseLeave={() => setCompanies(false)} className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>Companies
+                            onMouseLeave={() => setTimeout(() => setCompanies(false), 3000)} className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>Companies
                             {Companies && <div className="absolute right-0 px-4 py-4 top-full group-hover:block bg-white shadow-lg min-w-[250px] z-50">
                                 <div className="grid grid-cols-2 gap-6">
                                     <ul className="flex flex-col gap-5">
@@ -58,24 +68,31 @@ const Navbar = () => {
                             </div>}
                         </li>
                         <li onMouseOver={() => setProfile(true)}
-                            onMouseLeave={() => setProfile(false)} className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>Me
+                            onMouseLeave={() => setTimeout(() => setProfile(false), 3000)} className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>You
                             {Profile && <div className="absolute right-0 px-4 py-4 top-full group-hover:block bg-white shadow-lg min-w-[250px] z-50">
                                 <ul className="flex flex-col gap-5">
-                                    <li>Hello, User123@gmail.com!</li>
-                                    <hr className='mb-1 h-[1px] w-full' />
-                                    <Link href='/Applications'><li className="hover:text-blue-600">My Applications</li></Link>
-                                    <li className="hover:text-blue-600">Saved Jobs</li>
+                                    {isSignedIn && (
+                                        <li className='flex items-center gap-2 border-b pb-3'>
+                                            <SignedIn>
+                                                <UserButton />
+                                            </SignedIn>
+                                            Hello,{" "} {user.firstName ? `${user.firstName}` : user.username || user.primaryEmailAddress?.emailAddress}!
+                                        </li>
+                                    )}
+                                    <Link href='/Applications'><li className="hover:text-blue-600">Your Applications</li></Link>
                                     <Link href='/Resume'><li className="hover:text-blue-600">Resume / CV</li></Link>
+                                    <li className="hover:text-blue-600">Saved Jobs</li>
                                     <li className="hover:text-blue-600">Privacy Policy</li>
                                     <li className="hover:text-blue-600">Help Center &copy; JobPool</li>
                                 </ul>
                             </div>}
                         </li>
 
-                        <select name="country" id="country" className='cursor-pointer'>
-                            <option value="Ind"> IND</option>
-                            <option value="Usa">USA</option>
-                        </select>
+                        <SignedOut>
+                            <SignInButton>
+                                <button className="px-4 py-2 bg-blue-600 cursor-pointer text-white max-sm:text-xs text-sm font-medium rounded-lg hover:bg-blue-700 transition"> Sign in </button>
+                            </SignInButton>
+                        </SignedOut>
                     </ul>
 
                     <div className="hamburger block md:hidden cursor-pointer">

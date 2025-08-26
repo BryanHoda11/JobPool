@@ -116,7 +116,7 @@ const Jobs = () => {
 
                   <h3 className="text-lg sm:text-xl pt-3 text-gray-700">{j.company_name}</h3>
 
-                  <div className="flex max-md:flex-col md:items-center gap-4 mt-4 max-sm:text-xs text-sm text-gray-600">
+                  <div className="flex md:flex-wrap max-md:flex-col md:items-center gap-4 mt-4 max-sm:text-xs text-sm text-gray-600">
                     <p className="sm:bg-gray-100 sm:px-4 sm:py-2 sm:rounded-full w-fit">Salary : {j.salary || "Not Disclosed"}</p>
                     <p className="sm:bg-gray-100 sm:px-4 sm:py-2 sm:rounded-full w-fit">Job Location : {j.location || "Remote"}</p>
                     <p className="sm:bg-gray-100 sm:px-4 sm:py-2 sm:rounded-full w-fit">Category : {j.category}</p>
