@@ -81,7 +81,7 @@ const Navbar = () => {
                                     )}
                                     <Link href='/Applications'><li className="hover:text-blue-600">Your Applications</li></Link>
                                     <Link href='/Resume'><li className="hover:text-blue-600">Resume / CV</li></Link>
-                                    <li className="hover:text-blue-600">Saved Jobs</li>
+                                    <Link href='/Savedjobs'><li className="hover:text-blue-600">Saved Jobs</li></Link>
                                     <li className="hover:text-blue-600">Privacy Policy</li>
                                     <li className="hover:text-blue-600">Help Center &copy; JobPool</li>
                                 </ul>
