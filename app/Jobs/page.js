@@ -38,7 +38,7 @@ const Jobs = () => {
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 20;
+  const jobsPerPage = 10;
   const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
 
   const indexOfLastJob = currentPage * jobsPerPage;
@@ -49,14 +49,14 @@ const Jobs = () => {
     <>
       <Header />
 
-      <div className="search my-4 mt-7 w-[75%] mx-auto">
-        <input onChange={(e) => setSearch(e.target.value)} type="text" name="search" id="search" placeholder="Search Jobs" className="border px-4 py-3 rounded-xl text-lg w-full" />
+      <div className="search my-4 mt-7 w-full max-md:px-4 md:w-[75%] mx-auto">
+        <input onChange={(e) => setSearch(e.target.value)} type="text" name="search" id="search" placeholder="Search Jobs" className="border px-4 py-3 rounded-xl text-sm md:text-lg w-full" />
       </div>
 
       <hr className="opacity-40 my-8 w-[60%] mx-auto" />
 
-      <div className="jobs-container flex justify-center items-start gap-7 w-[85%] mx-auto">
-        <div className="left-filters sticky top-16 w-[30%] bg-white rounded-2xl shadow-xl p-4">
+      <div className="jobs-container flex justify-center items-start gap-7 w-full max-sm:px-4 sm:w-[85%] mx-auto">
+        <div className="left-filters sticky top-16 w-[30%] hidden lg:block bg-white rounded-2xl shadow-xl p-4">
           <h3 className="text-xl font-semibold pt-4">Filters</h3>
           <div className="keyword flex flex-col gap-2 py-4">
             <label htmlFor="">Keyword Search</label>
@@ -104,29 +104,29 @@ const Jobs = () => {
           <hr className="opacity-40 mt-5 w-[60%] mx-auto" />
         </div>
 
-        <div className="right-jobs w-[70%]">
+        <div className="right-jobs w-full lg:w-[70%]">
           {Fetchdetails ? (
             filteredJobs.length > 0 ? (
               currentJobs.map((j) => (
                 <div key={j.id} onClick={() => { setSelectedJob(j); setToggleModal(true); }} className="job-card mb-6 w-full h-auto mx-auto p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl cursor-pointer transition-all duration-700">
-                  <div className="flex items-start justify-between">
-                    <h2 className="text-xl font-semibold text-gray-800 hover:text-blue-600 cursor-pointer"> {j.title}</h2>
+                  <div className="flex max-sm:flex-col max-sm:gap-2 items-start sm:justify-between">
+                    <h2 className="sm:text-xl font-semibold text-gray-800 hover:text-blue-600 cursor-pointer"> {j.title}</h2>
                     <span className="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-600 font-medium">{j.job_type} </span>
                   </div>
 
-                  <h3 className="text-xl pt-3 text-gray-700">{j.company_name}</h3>
+                  <h3 className="text-lg sm:text-xl pt-3 text-gray-700">{j.company_name}</h3>
 
-                  <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-gray-600">
-                    <p>Salary : {j.salary || "Not Disclosed"}</p> |
-                    <p>Job Location : {j.location || "Remote"}</p> |
-                    <p>Category : {j.category}</p>
+                  <div className="flex max-md:flex-col md:items-center gap-4 mt-4 max-sm:text-xs text-sm text-gray-600">
+                    <p className="sm:bg-gray-100 sm:px-4 sm:py-2 sm:rounded-full w-fit">Salary : {j.salary || "Not Disclosed"}</p>
+                    <p className="sm:bg-gray-100 sm:px-4 sm:py-2 sm:rounded-full w-fit">Job Location : {j.location || "Remote"}</p>
+                    <p className="sm:bg-gray-100 sm:px-4 sm:py-2 sm:rounded-full w-fit">Category : {j.category}</p>
                   </div>
 
-                  <p className="mt-4 text-gray-600 line-clamp-5" dangerouslySetInnerHTML={{ __html: j.description }}></p>
+                  <p className="max-sm:text-xs mt-4 text-gray-600 line-clamp-5" dangerouslySetInnerHTML={{ __html: j.description }}></p>
 
                   <div className="mt-5 flex gap-3 items-center justify-end">
-                    <button className="px-4 py-2 bg-blue-600 cursor-pointer text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition"> Apply Now </button>
-                    <button className="px-4 py-2 bg-gray-100 cursor-pointer text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition"> Save </button>
+                    <button className="px-4 py-2 bg-blue-600 cursor-pointer text-white max-sm:text-xs text-sm font-medium rounded-lg hover:bg-blue-700 transition"> Apply Now </button>
+                    <button className="px-4 py-2 bg-gray-100 cursor-pointer text-gray-700 max-sm:text-xs text-sm font-medium rounded-lg hover:bg-gray-200 transition"> Save </button>
                   </div>
                 </div>
               ))
