@@ -4,6 +4,7 @@ import Modal from "@/components/Modal";
 import { useState, useEffect } from "react"
 import { AiOutlineCaretLeft } from "react-icons/ai";
 import { AiOutlineCaretRight } from "react-icons/ai";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Jobs = () => {
   const [Fetchdetails, setFetchdetails] = useState(false);
@@ -45,8 +46,44 @@ const Jobs = () => {
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
   const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
 
+
+  // Saved jobs
+  const handleSaveJob = (job) => {
+    const saved = JSON.parse(localStorage.getItem("savedJobs")) || [];
+
+    if (!saved.find((j) => j.id === job.id)) {
+      const newJob = { ...job, savedDate: new Date().toLocaleDateString() };
+      saved.push(newJob);
+      localStorage.setItem("savedJobs", JSON.stringify(saved));
+    }
+
+    toast('Job Saved!', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
       <Header />
 
       <div className="search my-4 mt-7 w-full max-md:px-4 md:w-[75%] mx-auto">
@@ -126,7 +163,7 @@ const Jobs = () => {
 
                   <div className="mt-5 flex gap-3 items-center justify-end">
                     <button className="px-4 py-2 bg-blue-600 cursor-pointer text-white max-sm:text-xs text-sm font-medium rounded-lg hover:bg-blue-700 transition"> Apply Now </button>
-                    <button className="px-4 py-2 bg-gray-100 cursor-pointer text-gray-700 max-sm:text-xs text-sm font-medium rounded-lg hover:bg-gray-200 transition"> Save </button>
+                    <button onClick={(e) => { e.stopPropagation(); handleSaveJob(j) }} className="px-4 py-2 bg-gray-100 cursor-pointer text-gray-700 max-sm:text-xs text-sm font-medium rounded-lg hover:bg-gray-200 transition"> Save </button>
                   </div>
                 </div>
               ))
