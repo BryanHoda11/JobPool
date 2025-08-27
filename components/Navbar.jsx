@@ -8,7 +8,6 @@ import { IoChevronDownSharp } from "react-icons/io5";
 
 import {
     SignInButton,
-    SignUpButton,
     SignedIn,
     SignedOut,
     UserButton,
@@ -45,8 +44,8 @@ const Navbar = () => {
                     <ul className='hidden md:flex items-center font-semibold gap-3'>
                         <Link href='/Jobs' className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>Jobs</Link>
                         <li onMouseOver={() => setCompanies(true)}
-                            onMouseLeave={() => setTimeout(() => setCompanies(false), 3000)} className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>Companies
-                            {Companies && <div className="absolute right-0 px-4 py-4 top-full group-hover:block bg-white shadow-lg min-w-[250px] z-50">
+                            onMouseLeave={() => setCompanies(false)} className='cursor-pointer group-hover:block hover:bg-gray-100 px-4 py-4 rounded-full'>Companies
+                            {Companies && <div className="absolute right-0 px-4 py-4 top-full bg-white shadow-lg min-w-[250px] z-50">
                                 <div className="grid grid-cols-2 gap-6">
                                     <ul className="flex flex-col gap-5">
                                         <Link href='/Jobs'><li className="hover:text-blue-600">Jobs at TCS</li></Link>
@@ -68,15 +67,12 @@ const Navbar = () => {
                             </div>}
                         </li>
                         <li onMouseOver={() => setProfile(true)}
-                            onMouseLeave={() => setTimeout(() => setProfile(false), 3000)} className='cursor-pointer hover:bg-gray-100 px-4 py-4 rounded-full'>You
-                            {Profile && <div className="absolute right-0 px-4 py-4 top-full group-hover:block bg-white shadow-lg min-w-[250px] z-50">
+                            onMouseLeave={() => setProfile(false)} className='cursor-pointer group-hover:block hover:bg-gray-100 px-4 py-4 rounded-full'>You
+                            {Profile && <div className="absolute right-0 px-4 py-4 top-full bg-white shadow-lg min-w-[250px] z-50">
                                 <ul className="flex flex-col gap-5">
                                     {isSignedIn && (
                                         <li className='flex items-center gap-2 border-b pb-3'>
-                                            <SignedIn>
-                                                <UserButton />
-                                            </SignedIn>
-                                            Hello,{" "} {user.firstName ? `${user.firstName}` : user.username || user.primaryEmailAddress?.emailAddress}!
+                                            Hello,{" "} {user.firstName ? `${user.firstName}` : user.username || user.primaryEmailAddress?.emailAddress}! 👋
                                         </li>
                                     )}
                                     <Link href='/Applications'><li className="hover:text-blue-600">Your Applications</li></Link>
@@ -88,11 +84,16 @@ const Navbar = () => {
                             </div>}
                         </li>
 
-                        <SignedOut>
-                            <SignInButton>
-                                <button className="px-4 py-2 bg-blue-600 cursor-pointer text-white max-sm:text-xs text-sm font-medium rounded-lg hover:bg-blue-700 transition"> Sign in </button>
-                            </SignInButton>
-                        </SignedOut>
+                        <li>
+                            <SignedIn>
+                                <UserButton />
+                            </SignedIn>
+                            <SignedOut>
+                                <SignInButton>
+                                    <button className="px-4 py-2 bg-blue-600 cursor-pointer text-white max-sm:text-xs text-sm font-medium rounded-lg hover:bg-transparent hover:text-blue-600 border hover:border-blue-600 transition-all duration-300"> Sign in </button>
+                                </SignInButton>
+                            </SignedOut>
+                        </li>
                     </ul>
 
                     <div className="hamburger block md:hidden cursor-pointer">
@@ -124,22 +125,35 @@ const Navbar = () => {
                                 </ul>
                             </div>
                         </div>}
-                        <li className='flex w-full items-center justify-between'>Me <IoChevronDownSharp onClick={() => setProfile(prev => !prev)} /></li>
+                        <li className='flex w-full items-center justify-between'>You <IoChevronDownSharp onClick={() => setProfile(prev => !prev)} /></li>
                         {Profile && <div className="px-4 min-w-[250px]">
                             <ul className="flex flex-col gap-5">
-                                <li>Hello, User123@gmail.com!</li>
-                                <hr className='mb-1 h-[1px] w-full' />
-                                <Link href='/Applications'><li className="hover:text-blue-600">My Applications</li></Link>
-                                <li className="hover:text-blue-600">Saved Jobs</li>
+                                {isSignedIn && (
+                                    <li className='flex items-center gap-2 border-b pb-3'>
+                                        Hello,{" "} {user.firstName ? `${user.firstName}` : user.username || user.primaryEmailAddress?.emailAddress}! 👋
+                                    </li>
+                                )}
+                                <Link href='/Applications'><li className="hover:text-blue-600">Your Applications</li></Link>
                                 <Link href='/Resume'><li className="hover:text-blue-600">Resume / CV</li></Link>
+                                <Link href='/Savedjobs'><li className="hover:text-blue-600">Saved Jobs</li></Link>
                                 <li className="hover:text-blue-600">Privacy Policy</li>
                                 <li className="hover:text-blue-600">Help Center &copy; JobPool</li>
                             </ul>
                         </div>}
-                        <select name="country" id="country" className='cursor-pointer w-fit'>
-                            <option value="Ind"> IND</option>
-                            <option value="Usa">USA</option>
-                        </select>
+
+                        <li>
+                            <SignedIn>
+                                <div className='flex items-center gap-3'>
+                                    <UserButton />
+                                { user?.primaryEmailAddress?.emailAddress}
+                                </div>
+                            </SignedIn>
+                            <SignedOut>
+                                <SignInButton>
+                                    <button className="px-4 py-2 w-full bg-blue-600 cursor-pointer text-white max-sm:text-xs text-sm font-medium rounded-lg hover:bg-transparent hover:text-blue-600 border hover:border-blue-600 transition-all duration-300"> Sign in </button>
+                                </SignInButton>
+                            </SignedOut>
+                        </li>
                     </ul>
                 </div>}
             </nav>
