@@ -18,7 +18,7 @@ const Resume = () => {
                 </div>
 
                 <div className="resume mx-auto flex justify-center">
-                    <img src="/images/DummyResume.webp" alt="dummy-resume" />
+                    <Image width={700} height={990} src="/images/DummyResume.webp" alt="dummy-resume" />
                 </div>
             </div>
         </>
